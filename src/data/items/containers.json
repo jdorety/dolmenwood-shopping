@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Backpack",
+    "capacity": "400 coins",
+    "cost": 4,
+    "weight": 50,
+    "description": "A leather bag with shoulder straps. Holds up to 400 coins."
+  },
+  {
+    "name": "Barrel",
+    "capacity": "320 pints",
+    "cost": 1,
+    "weight": 70,
+    "description": "A wooden barrel that holds 40 gallons (320 pints)."
+  },
+  {
+    "name": "Belt pouch",
+    "capacity": "50 coins",
+    "cost": 1,
+    "weight": 10,
+    "description": "A leather pouch that holds up to 50 coins."
+  },
+  {
+    "name": "Bucket",
+    "capacity": "40 pints",
+    "cost": 1,
+    "weight": 20,
+    "description": "Holds 40 pints (5 gallons)."
+  },
+  {
+    "name": "Casket (iron, large)",
+    "capacity": "800 coins",
+    "cost": 30,
+    "weight": 400,
+    "description": "A solid iron casket. A large casket can hold up to 800 coins."
+  },
+  {
+    "name": "Casket (iron, small)",
+    "capacity": "250 coins",
+    "cost": 10,
+    "weight": 100,
+    "description": "A solid Iron casket. A small casket can hold up to 250 coins."
+  },
+  {
+    "name": "Chest (wooden, large)",
+    "capacity": "1,000 coins",
+    "cost": 5,
+    "weight": 200,
+    "description": "A large chest can hold 1,000 coins"
+  },
+  {
+    "name": "Chest (wooden, small)",
+    "capacity": "300 coins",
+    "cost": 1,
+    "weight": 50,
+    "description": "A small chest can hold 300 coins."
+  },
+  {
+    "name": "Sack",
+    "capacity": "600 coins",
+    "cost": 1,
+    "weight": 5,
+    "description": "A large, hessian sack that can hold 600 coins."
+  },
+  {
+    "name": "Scroll case",
+    "capacity": "1 scroll",
+    "cost": 1,
+    "weight": 5,
+    "description": "An oiled leather tube with a cap. Not completely watertight."
+  },
+  {
+    "name": "Vial (glass)",
+    "capacity": "1/2 pint",
+    "cost": 1,
+    "weight": 1,
+    "description": "A glass vial that can hold up to half a pint of liquid."
+  },
+  {
+    "name": "Waterskin",
+    "capacity": "2 pints",
+    "cost": 1,
+    "weight": 50,
+    "description": "A leather container that holds up to 2 pints of liquid. Weighs 5 coins when empty."
+  }
+]
