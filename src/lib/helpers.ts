@@ -1,12 +1,25 @@
-export const lookupItem = (
+type LookupFunction<T = unknown> = (
+  tables: Record<string, unknown>,
+  tableKey: string,
+  index: number
+) => T;
+
+export const lookupItem: LookupFunction<GameItem> = (
   tables: Record<string, unknown>,
   tableKey: string,
   index: number
 ) => {
-  if (tables.hasOwnProperty(tableKey)) {
-    const lookup = tables[tableKey];
-    if (!Array.isArray(lookup)) throw new Error("Table appears corrupted");
-    const item = lookup[index];
-    return item?.description;
-  } else throw new Error("Item table missing");
+  if (!tables.hasOwnProperty(tableKey)) throw new Error("Item table missing");
+  const lookup = tables[tableKey];
+  if (!Array.isArray(lookup)) throw new Error("Table is not an Array");
+  const item = lookup[index];
+  if (!item) throw new Error("Item not found in table");
+  return item;
+};
+
+export const lookupItemDescription: LookupFunction<string> = (...args) => {
+  const item = lookupItem(...args);
+  const { description } = item;
+  if (!description) throw new Error("No description available");
+  return description;
 };

@@ -1,7 +1,7 @@
 <script lang="ts">
   import InfoButton from "./components/InfoButton.svelte";
   import type { MouseEventHandler } from "svelte/elements";
-  import { lookupItem } from "./lib/helpers";
+  import { lookupItemDescription } from "./lib/helpers";
   import { containers } from "./data/tables";
 
   const items: { containers: Array<Container> } & Record<string, unknown> = {
@@ -9,13 +9,18 @@
   };
 
   const handleInfo: MouseEventHandler<HTMLButtonElement> = (e) => {
-    const value = e.currentTarget.value;
-    const [table, indexString] = value.split("-");
-    if (typeof table === "string" && indexString) {
-      const index = Number(indexString);
-      if (Number.isNaN(index)) throw new Error("No index available");
-      const item = lookupItem(items, table, index);
-      alert(item);
+    try {
+      const value = e.currentTarget.value;
+      const [table, indexString] = value.split("-");
+      if (typeof table === "string" && indexString) {
+        const index = Number(indexString);
+        if (Number.isNaN(index)) throw new Error("No index available");
+        const item = lookupItemDescription(items, table, index);
+        alert(item);
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err);
     }
   };
 </script>
