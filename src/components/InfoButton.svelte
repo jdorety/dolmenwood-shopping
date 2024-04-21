@@ -6,7 +6,7 @@
   export let handleClick: MouseEventHandler<HTMLButtonElement>;
 </script>
 
-<button class="info-button" on:click={handleClick} value={value}>
+<button class="info-button" on:click={handleClick} {value}>
   <img
     src={info}
     alt={`Additional information button for ${itemName}`}
