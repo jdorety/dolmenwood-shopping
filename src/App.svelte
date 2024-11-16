@@ -10,26 +10,30 @@
     containers,
   };
   const quantityState: Record<string, number> = {};
+  const cart = new ShoppingCart();
+
   const quantityHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
     const key = e.currentTarget.name;
     const newQuantity = e.currentTarget.valueAsNumber;
     quantityState[key] = newQuantity;
     console.log(quantityState);
   };
-  const cart = new ShoppingCart();
 
   const addHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     try {
       const key = e.currentTarget.value;
+      const quantity = quantityState?.[key];
+      if (typeof quantity === "undefined" || quantity <= 0) {
+        throw new Error("Please select a quantity more than 0");
+      }
       const [tableKey, indexString] = key.split("-");
       const index = Number(indexString);
-      console.log({ tableKey, indexString, index });
       if (hasOwnProperty(items, tableKey) && !Number.isNaN(index)) {
         const table = items[tableKey];
         if (!Array.isArray(table)) throw new Error("unable to find table");
         const newItem = table[index];
         console.log({ table, newItem });
-        if (newItem) cart.addItem(key, 1, [0, 0, 0, 0]);
+        if (newItem) cart.addItem(key, quantity, [0, 0, 0, 0]);
         const cartTotal = cart.getCart();
         console.log("cart", cartTotal);
       }

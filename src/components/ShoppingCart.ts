@@ -7,10 +7,10 @@ type CartValue = [number, CostMatrix]
 
 export class ShoppingCart {
   #cart: Record<string, CartValue>;
-  amount: number
+  total: CostMatrix
   constructor() {
     this.#cart = {};
-    this.amount = 0;
+    this.total = [0, 0, 0, 0];
   }
   addItem(key: string, qty: number, cost: CostMatrix) {
     let newQuantity = qty;
