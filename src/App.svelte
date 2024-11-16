@@ -4,6 +4,7 @@
   import { hasOwnProperty, lookupItemDescription } from "./lib/helpers";
   import { containers } from "./data/tables";
   import { ShoppingCart } from "./components/ShoppingCart";
+  import CartBadge from "./components/CartBadge.svelte";
 
   const items: { containers: Array<Container> } = {
     containers,
@@ -12,15 +13,16 @@
 
   const addHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     try {
-      const [key, indexString] = e.currentTarget.value.split("-");
+      const key = e.currentTarget.value;
+      const [tableKey, indexString] = key.split("-");
       const index = Number(indexString);
-      console.log({ key, indexString, index });
-      if (hasOwnProperty(items, key) && !Number.isNaN(index)) {
-        const table = items[key];
+      console.log({ tableKey, indexString, index });
+      if (hasOwnProperty(items, tableKey) && !Number.isNaN(index)) {
+        const table = items[tableKey];
         if (!Array.isArray(table)) throw new Error("unable to find table");
         const newItem = table[index];
-        console.log({table, newItem})
-        if (newItem) cart.addItem(newItem, 1);
+        console.log({ table, newItem });
+        if (newItem) cart.addItem(key, 1, [0, 0, 0, 0]);
         const cartTotal = cart.getCart();
         console.log("cart", cartTotal);
       }
@@ -47,6 +49,7 @@
 </script>
 
 <main>
+  <CartBadge />
   <table>
     <thead
       ><tr
@@ -70,7 +73,7 @@
               itemName={container.name}
               handleClick={handleInfo}
             /></td
-          ><td></td></tr
+          ><td /></tr
         >{/each}</tbody
     >
   </table>
