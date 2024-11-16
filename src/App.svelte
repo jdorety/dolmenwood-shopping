@@ -1,13 +1,20 @@
 <script lang="ts">
   import InfoButton from "./components/InfoButton.svelte";
-  import type { MouseEventHandler } from "svelte/elements";
+  import type { ChangeEventHandler, MouseEventHandler } from "svelte/elements";
   import { hasOwnProperty, lookupItemDescription } from "./lib/helpers";
-  import { containers } from "./data/tables";
+  import containers from "./data/items/containers.json";
   import { ShoppingCart } from "./components/ShoppingCart";
   import CartBadge from "./components/CartBadge.svelte";
 
   const items: { containers: Array<Container> } = {
     containers,
+  };
+  const quantityState: Record<string, number> = {};
+  const quantityHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const key = e.currentTarget.name;
+    const newQuantity = e.currentTarget.valueAsNumber;
+    quantityState[key] = newQuantity;
+    console.log(quantityState);
   };
   const cart = new ShoppingCart();
 
@@ -63,7 +70,13 @@
         <tr
           ><td>{container.name}</td><td>{container.cost}</td><td
             >{container.capacity}</td
-          ><td>{container.weight}</td><td><input type="number" /></td><td
+          ><td>{container.weight}</td><td
+            ><input
+              name={`containers-${index}`}
+              type="number"
+              on:change={quantityHandler}
+            /></td
+          ><td
             ><button on:click={addHandler} value={`containers-${index}`}
               >+</button
             ></td
