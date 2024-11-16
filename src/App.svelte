@@ -33,9 +33,10 @@
         if (!Array.isArray(table)) throw new Error("unable to find table");
         const newItem = table[index];
         console.log({ table, newItem });
-        if (newItem) cart.addItem(key, quantity, [0, 0, 0, 0]);
-        const cartTotal = cart.getCart();
-        console.log("cart", cartTotal);
+        if (newItem) cart.addItem(key, quantity, newItem.cost);
+        const cartContents = cart.getCart();
+        const cartTotal = cart.getTotal();
+        console.log("cart", cartContents, cartTotal);
       }
     } catch (err) {
       console.error(err);
